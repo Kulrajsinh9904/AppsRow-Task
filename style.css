@@ -581,6 +581,16 @@
   font-size: 80px;
   letter-spacing: -2.40px;
   line-height: 88px;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 2s ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .home-screen .mapped-with-purpose {
@@ -2550,3 +2560,32 @@ body {
         top: 18px;
     }
 }
+
+/* Style for the icon-based scroll button */
+.scroll-down-arrow {
+    /* UPDATED: Use margin-top to create space ABOVE the button */
+    margin-top: 25px; 
+    
+    width: 50px;
+    height: 50px;
+    border: 2px solid white; /* Or your preferred color */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Style for the SVG arrow inside the button */
+.scroll-down-arrow svg {
+    width: 24px;
+    height: 24px;
+    stroke: white; /* Or your preferred color */
+}
+
+/* Hover effect */
+.scroll-down-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+

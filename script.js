@@ -35,3 +35,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+  function animateCounter(element, target, duration = 3000) {
+    let start = 0;
+    let startTime = null;
+
+    function update(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const value = Math.min(Math.floor(progress / duration * target), target);
+      element.textContent = `${value}%`;
+      if (value < target) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  function initCountersOnScroll() {
+    const group = document.querySelector('.group-3');
+    const counters = [
+      { selector: '.text-wrapper-11', target: 99 },     // Customer satisfaction
+      { selector: '.text-wrapper-13', target: 56 },     // Experience agents
+      { selector: '.text-wrapper-15', target: 249 }     // Total property sell
+    ];
+
+    let triggered = false;
+
+    function checkVisibility() {
+      const rect = group.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (isVisible && !triggered) {
+        triggered = true;
+        counters.forEach(({ selector, target }) => {
+          const el = document.querySelector(selector);
+          animateCounter(el, target, 3000); // 3-second smooth animation
+        });
+      }
+    }
+
+    window.addEventListener('scroll', checkVisibility);
+    window.addEventListener('load', checkVisibility); // In case it's already visible on load
+  }
+
+  document.addEventListener('DOMContentLoaded', initCountersOnScroll);
