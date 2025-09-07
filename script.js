@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         lastScrollTop = scrollTop;
+        setTimeout(preloadImages, 100);
+    setupImageObserver();
     });
 
     // Smooth scrolling for anchor links
@@ -376,14 +378,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalSlides = container.children.length;
     let slideWidth = 680; // Default desktop width
     
-    // Update slide width based on screen size
-    function updateSlideWidth() {
-        if (window.innerWidth <= 768) {
-            slideWidth = 320; // Mobile width
-        } else {
-            slideWidth = 680; // Desktop width
-        }
+   // Update slide width based on screen size
+function updateSlideWidth() {
+    if (window.innerWidth <= 768) {
+        slideWidth = 320; // Mobile: 300px + 20px margin
+    } else {
+        slideWidth = 680; // Desktop: 640px + 40px margin  
     }
+}
+
+// Preload images function
+function preloadImages() {
+    const images = container.querySelectorAll('img');
+    images.forEach(img => {
+        if (img.dataset.src) {
+            img.src = img.dataset.src;
+        }
+        // Force image load
+        const newImg = new Image();
+        newImg.src = img.src;
+    });
+}
+
+// Call preload after slider initialization
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing slider code ...
+    
+    // Add this at the end of your DOMContentLoaded function
+    setTimeout(preloadImages, 100);
+});
     
     // Update slider position
     function updateSlider() {
@@ -434,6 +457,14 @@ document.addEventListener('DOMContentLoaded', function() {
         nextSlide();
     });
     
+// Call this in your button click handlers to debug
+prevBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log('Previous button clicked');
+    prevSlide();
+    setTimeout(checkImageLoading, 100); // Check after slide
+});
+
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowLeft') {
@@ -457,3 +488,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('Slider initialized with', totalSlides, 'slides');
 });
+
+function setupImageObserver() {
+    const images = document.querySelectorAll('.element-rendering-house-1, .element-rendering-house-2, .element-rendering-house-3');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.style.opacity = '1';
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px' // Start loading 50px before the image comes into view
+    });
+    
+    images.forEach(img => {
+        imageObserver.observe(img);
+    });
+}
