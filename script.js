@@ -508,3 +508,111 @@ function setupImageObserver() {
         imageObserver.observe(img);
     });
 }
+// Add this JavaScript to your script.js file - WORKING VERSION
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, looking for scroll arrow...');
+    
+    // Find the scroll arrow element
+    const scrollArrow = document.querySelector('.scroll-down-arrow');
+    
+    if (scrollArrow) {
+        console.log('Scroll arrow found!');
+        
+        // Remove the href to prevent default anchor behavior
+        scrollArrow.removeAttribute('href');
+        
+        // Add click event listener
+        scrollArrow.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Scroll arrow clicked!');
+            
+            // Get the hero banner section (where video background starts)
+            const heroBanner = document.querySelector('.hero-banner');
+            const stickyHeader = document.querySelector('.group-18');
+            
+            if (heroBanner) {
+                // Calculate scroll position
+                const headerHeight = stickyHeader ? stickyHeader.offsetHeight : 67;
+                const targetPosition = heroBanner.offsetTop - headerHeight - 20;
+                
+                console.log('Scrolling to position:', targetPosition);
+                
+                // Smooth scroll to target
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            } else {
+                // Fallback: scroll down one viewport height
+                const viewportHeight = window.innerHeight;
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                const targetPosition = currentScroll + viewportHeight - 100;
+                
+                console.log('Fallback scroll to:', targetPosition);
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+        
+        // Add hover effect styles dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            .scroll-down-arrow {
+                cursor: pointer !important;
+                transition: all 0.3s ease !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            .scroll-down-arrow:hover {
+                background-color: #ff6613 !important;
+                border-color: #ff6613 !important;
+                transform: scale(1.1) !important;
+            }
+            
+            .scroll-down-arrow:hover svg {
+                stroke: white !important;
+            }
+            
+            .scroll-down-arrow svg {
+                transition: stroke 0.3s ease !important;
+            }
+        `;
+        document.head.appendChild(style);
+        
+    } else {
+        console.log('Scroll arrow not found!');
+    }
+});
+
+// Alternative simpler version - use this if the above doesn't work
+function initScrollArrow() {
+    // Wait a bit for page to fully load
+    setTimeout(function() {
+        const arrow = document.querySelector('.scroll-down-arrow');
+        
+        if (arrow) {
+            arrow.onclick = function(e) {
+                e.preventDefault();
+                
+                // Simple scroll down by 800px (approximate hero section height)
+                window.scrollTo({
+                    top: 900,
+                    behavior: 'smooth'
+                });
+                
+                return false;
+            };
+            
+            console.log('Simple scroll arrow initialized');
+        }
+    }, 500);
+}
+
+// Initialize both methods
+initScrollArrow();
