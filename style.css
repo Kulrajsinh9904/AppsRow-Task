@@ -1480,7 +1480,7 @@ body {
   width: 409px;
   height: 483px;
   top: 0;
-  left: 1603px;
+  left: 1607px;
   object-fit: cover;
   border-radius: 20px;
 }
@@ -2887,4 +2887,123 @@ body {
         width: 20px;
         height: 20px;
     }
+}
+/* TESTIMONIALS NAVIGATION BUTTONS - ADD TO YOUR EXISTING CSS */
+
+/* Make testimonials section container for navigation */
+.testimonials-section {
+  position: absolute !important;
+  width: 1400px !important;
+  height: 483px !important;
+  top: 5178px !important;
+  left: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Fix the frame-10 to work as a slider */
+.home-screen .frame-10 {
+  position: absolute !important;
+  width: 1200px !important;
+  height: 483px !important;
+  top: 0 !important;
+  left: 100px !important;
+  display: flex !important;
+  transition: transform 0.6s ease !important;
+  overflow: visible !important;
+}
+
+/* Make testimonial items flex properly */
+.home-screen .frame-10 > * {
+  flex-shrink: 0 !important;
+  width: 564px !important;
+  margin-right: 468px !important;
+}
+
+/* Navigation buttons */
+.testimonial-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background-color: rgba(255, 102, 19, 0.9) !important;
+  border: none !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  z-index: 15 !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.testimonial-nav:hover {
+  background-color: #ff6613 !important;
+  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.testimonial-nav:active {
+  transform: translateY(-50%) scale(0.95) !important;
+}
+
+.testimonial-nav:focus {
+  outline: 3px solid #4a90e2 !important;
+  outline-offset: 3px !important;
+}
+
+.testimonial-nav.disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+.testimonial-nav-prev {
+  left: 20px !important;
+}
+
+.testimonial-nav-next {
+  right: 20px !important;
+}
+
+.testimonial-nav svg {
+  width: 24px !important;
+  height: 24px !important;
+  fill: none !important;
+  stroke: white !important;
+  stroke-width: 2.5 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .testimonials-section {
+    width: 100vw !important;
+    left: 0 !important;
+  }
+  
+  .home-screen .frame-10 {
+    width: calc(100vw - 40px) !important;
+    left: 20px !important;
+  }
+  
+  .testimonial-nav {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .testimonial-nav svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .testimonial-nav-prev {
+    left: 10px !important;
+  }
+
+  .testimonial-nav-next {
+    right: 10px !important;
+  }
 }

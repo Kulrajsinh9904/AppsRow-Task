@@ -277,43 +277,56 @@
                 <div class="slider-dot" data-slide="3"></div>
                 <div class="slider-dot" data-slide="4"></div>
             </div>
-        <section class="testimonials-section">
-  <div class="frame-10">
-    <!-- <article class="group-10"> -->
-      <div class="overlap-group-3">
-        <!-- Add video for Larry Lawson here -->
-        <video class="rectangle-2" src="photos/1109327_1080p_Campus_1280x720.mp4" autoplay loop muted playsinline poster="photos/larry-lawson-poster.jpg"></video>
-        <div class="frame-wrapper">
-          <div class="frame-11">
-            <h4 class="text-wrapper-6">Larry Lawson, Agent at Squire</h4>
-            <div class="text-wrapper-39"></div>
-          </div>
+        <!-- UPDATED TESTIMONIALS SECTION WITH NAVIGATION BUTTONS -->
+<section class="testimonials-section">
+  <div class="frame-10" id="testimonialsContainer">
+    <!-- Your existing testimonial content -->
+    <div class="overlap-group-3">
+      <!-- Add video for Larry Lawson here -->
+      <video class="rectangle-2" src="photos/1109327_1080p_Campus_1280x720.mp4" autoplay loop muted playsinline poster="photos/larry-lawson-poster.jpg"></video>
+      <div class="frame-wrapper">
+        <div class="frame-11">
+          <h4 class="text-wrapper-6">Larry Lawson, Agent at Squire</h4>
+          <div class="text-wrapper-39"></div>
         </div>
-        <blockquote class="text-wrapper-40">
-          Fulfilled direction use continual set him propriety continued. Saw met applauded favorite deficient
-          engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage
-          comfort civilly. Dash woods see frankness objection abilities hire alteration it favorable appearance
-          up.
-        </blockquote>
       </div>
-    <!-- </article> -->
+      <blockquote class="text-wrapper-40">
+        Fulfilled direction use continual set him propriety continued. Saw met applauded favorite deficient
+        engrossed concealed and her. Concluded boy perpetual old supposing. Farther related bed and passage
+        comfort civilly. Dash woods see frankness objection abilities hire alteration it favorable appearance
+        up.
+      </blockquote>
+    </div>
+
     <!-- Use video for Jenny Wilson as well for consistency -->
-<img class="rectangle-3" src="photos/441c0e859ad1f6ab5c695e82486db85f8f97b53d.jpg" alt="Jenny Wilson testimonial background" />    <article class="group-11">
-      <div class="overlap-group-3">
-        <blockquote class="text-wrapper-41">
-          Supposing so be resolving breakfast am or perfectly. It drew a hill from me. Valley by oh twenty
-          direct me so. Departure defective arranging rapturous did believe him all had supported. Family months
-          lasted simple set nature vulgar him. Picture for attempt joy excited ten carried manners talking how.
-        </blockquote>
-        <div class="frame-12">
-          <div class="frame-13">
-            <h4 class="text-wrapper-42">Jenny Wilson, Architect at PlantLab</h4>
-            <div class="text-wrapper-39"></div>
-          </div>
+    <img class="rectangle-3" src="photos/441c0e859ad1f6ab5c695e82486db85f8f97b53d.jpg" alt="Jenny Wilson testimonial background" />    
+    <div class="overlap-group-3">
+      <blockquote class="text-wrapper-41">
+        Supposing so be resolving breakfast am or perfectly. It drew a hill from me. Valley by oh twenty
+        direct me so. Departure defective arranging rapturous did believe him all had supported. Family months
+        lasted simple set nature vulgar him. Picture for attempt joy excited ten carried manners talking how.
+      </blockquote>
+      <div class="frame-12">
+        <div class="frame-13">
+          <h4 class="text-wrapper-42">Jenny Wilson, Architect at PlantLab</h4>
+          <div class="text-wrapper-39"></div>
         </div>
       </div>
-    <!-- </article> -->
+    </div>
   </div>
+
+  <!-- ADD THESE NAVIGATION BUTTONS -->
+  <button class="testimonial-nav testimonial-nav-prev" id="testimonialPrevBtn" aria-label="Previous testimonial">
+    <svg viewBox="0 0 24 24">
+        <path d="M15 18L9 12L15 6"/>
+    </svg>
+  </button>
+
+  <button class="testimonial-nav testimonial-nav-next" id="testimonialNextBtn" aria-label="Next testimonial">
+    <svg viewBox="0 0 24 24">
+        <path d="M9 18L15 12L9 6"/>
+    </svg>
+  </button>
 </section>
         <section class="partners-section" aria-label="Our Partners">
         <div class="partners-container">

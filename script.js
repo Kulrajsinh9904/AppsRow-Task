@@ -616,3 +616,140 @@ function initScrollArrow() {
 
 // Initialize both methods
 initScrollArrow();
+// TESTIMONIALS NAVIGATION JAVASCRIPT - ADD TO YOUR script.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Testimonials slider functionality
+    const testimonialsContainer = document.getElementById('testimonialsContainer');
+    const testimonialPrevBtn = document.getElementById('testimonialPrevBtn');
+    const testimonialNextBtn = document.getElementById('testimonialNextBtn');
+    
+    if (testimonialsContainer && testimonialPrevBtn && testimonialNextBtn) {
+        let currentTestimonialSlide = 0;
+        const testimonialSlides = testimonialsContainer.children;
+        const totalTestimonialSlides = testimonialSlides.length;
+        const testimonialSlideWidth = 604; // 564px width + 40px margin
+        
+        console.log('Testimonials initialized with', totalTestimonialSlides, 'slides');
+        
+        // Update slider position
+        function updateTestimonialsSlider() {
+            const translateX = -currentTestimonialSlide * testimonialSlideWidth;
+            testimonialsContainer.style.transform = `translateX(${translateX}px)`;
+            console.log(`Testimonials moving to slide ${currentTestimonialSlide}, translateX: ${translateX}px`);
+        }
+        
+        // Update button states
+        function updateTestimonialButtons() {
+            testimonialPrevBtn.classList.toggle('disabled', currentTestimonialSlide === 0);
+            testimonialNextBtn.classList.toggle('disabled', currentTestimonialSlide === totalTestimonialSlides - 1);
+            
+            testimonialPrevBtn.setAttribute('aria-disabled', currentTestimonialSlide === 0);
+            testimonialNextBtn.setAttribute('aria-disabled', currentTestimonialSlide === totalTestimonialSlides - 1);
+        }
+        
+        // Previous slide
+        function prevTestimonialSlide() {
+            if (currentTestimonialSlide > 0) {
+                currentTestimonialSlide--;
+                updateTestimonialsSlider();
+                updateTestimonialButtons();
+                console.log('Previous testimonial slide:', currentTestimonialSlide);
+            }
+        }
+        
+        // Next slide
+        function nextTestimonialSlide() {
+            if (currentTestimonialSlide < totalTestimonialSlides - 1) {
+                currentTestimonialSlide++;
+                updateTestimonialsSlider();
+                updateTestimonialButtons();
+                console.log('Next testimonial slide:', currentTestimonialSlide);
+            }
+        }
+        
+        // Event listeners
+        testimonialPrevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Testimonial previous button clicked');
+            prevTestimonialSlide();
+        });
+        
+        testimonialNextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Testimonial next button clicked');
+            nextTestimonialSlide();
+        });
+        
+        // Keyboard navigation for testimonials
+        document.addEventListener('keydown', function(e) {
+            // Only respond when testimonial buttons are focused
+            if (document.activeElement === testimonialPrevBtn || 
+                document.activeElement === testimonialNextBtn) {
+                
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevTestimonialSlide();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextTestimonialSlide();
+                }
+            }
+        });
+        
+        // Touch/swipe support for testimonials
+        let testimonialStartX = 0;
+        let testimonialCurrentX = 0;
+        let testimonialIsDragging = false;
+
+        testimonialsContainer.addEventListener('touchstart', function(e) {
+            testimonialStartX = e.touches[0].clientX;
+            testimonialIsDragging = true;
+            testimonialsContainer.style.transition = 'none';
+        }, { passive: true });
+
+        testimonialsContainer.addEventListener('touchmove', function(e) {
+            if (!testimonialIsDragging) return;
+            
+            testimonialCurrentX = e.touches[0].clientX;
+            const deltaX = testimonialCurrentX - testimonialStartX;
+            const currentTransform = -currentTestimonialSlide * testimonialSlideWidth;
+            
+            testimonialsContainer.style.transform = `translateX(${currentTransform + deltaX}px)`;
+        }, { passive: true });
+
+        testimonialsContainer.addEventListener('touchend', function() {
+            if (!testimonialIsDragging) return;
+            
+            testimonialIsDragging = false;
+            testimonialsContainer.style.transition = 'transform 0.6s ease';
+            
+            const deltaX = testimonialCurrentX - testimonialStartX;
+            const threshold = 50;
+            
+            if (Math.abs(deltaX) > threshold) {
+                if (deltaX > 0 && currentTestimonialSlide > 0) {
+                    prevTestimonialSlide();
+                } else if (deltaX < 0 && currentTestimonialSlide < totalTestimonialSlides - 1) {
+                    nextTestimonialSlide();
+                } else {
+                    updateTestimonialsSlider();
+                }
+            } else {
+                updateTestimonialsSlider();
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            updateTestimonialsSlider(); // Recalculate position
+        });
+        
+        // Initialize
+        updateTestimonialButtons();
+        
+        console.log('Testimonials slider initialized');
+    } else {
+        console.log('Testimonials elements not found');
+    }
+});
