@@ -12,6 +12,7 @@
   width: 1400px;
   height: 7850px;
   position: relative;
+  margin-top: 8px;
 }
 
 .home-screen .overlap {
@@ -1891,7 +1892,7 @@ body {
 .home-screen .group-18 {
   position: absolute;
   width: 1400px;
-  height: 47px;
+  height: 55px;
   top: 689px;
   left: 0;
   background-color: #ff6613;
@@ -1903,7 +1904,7 @@ body {
   width: 157px;
   font-size: revert;
   height: 25px;
-  top: 9px;
+  top: 13px;
   left: 40px;
   aspect-ratio: 6.38;
 }
@@ -1913,7 +1914,7 @@ body {
   align-items: center;
   gap: 64px;
   position: absolute;
-  top: 10px;
+  top: 13px;
   left: 799px;
 }
 
@@ -2574,9 +2575,9 @@ body {
 .home-screen .group-18 {
     position: fixed !important; /* Changed from absolute to fixed */
     top: 10px !important; /* Stick to top of viewport */
-    left: 0 !important;
-    width: 100% !important;
-    height: 47px;
+    left: 7px !important;
+    width: 99% !important;
+    height: 55px;
     background-color: #ff6613;
     z-index: 1000 !important; /* High z-index to stay above other content */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
